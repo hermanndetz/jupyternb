@@ -1,0 +1,5 @@
+doc
+Gemfile.lock
+*.gem
+test
+*.swp

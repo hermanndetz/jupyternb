@@ -26,14 +26,14 @@ A simple example is given in the following:
 ```ruby
 module JupyterNB
 
-# Create an IPYNB Generator
+# Create a Jupyter Notebook Generator
 gen = Generator.new
 
 # Add some content cells (either multi-line strings or arrays of strings)
 gen.add_cell("markdown", "", "", "# Test header\nsome text\n## Second Header\nmore text")
 gen.add_cell("code", "", "", ["puts \"Hello World!\"","# Do something useful here"])
 
-# Simply print the IPYNB output to the terminal
+# Simply print the output to the terminal
 puts gen.generate
 
 end
@@ -43,7 +43,8 @@ end
 
 The kernel information is presently hardcoded. Therefore, the generator can 
 currently only output IPython Notebooks, which are to be run by 
-a Ruby kernel.
+a Ruby kernel. This will be extended to other kernels in the future. Some API 
+modifications may be required, therefore, this version is still labeled 0.0.1.
 
 ## Feedback & Contributions
 
