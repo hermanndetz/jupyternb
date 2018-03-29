@@ -70,7 +70,15 @@ module JupyterNB
 			@langinfo[:name] = "python"
 			@langinfo[:fileext] = ".py"
 			@langinfo[:mime] = "text/x-python"
-			@langinfo[:version] = `python3 -V`.split(' ').last
+
+			# Check for python3
+			`which python3`
+			if $?.success?
+				@langinfo[:version] = `python3 -V`.split(' ').last
+			else
+				# Fall back to initial 3.0 release, if no python3 executable is found
+				@langinfo[:version] = '3.0'
+			end
 		end
 
 	end
