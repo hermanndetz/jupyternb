@@ -38,6 +38,7 @@ gen.add_cell("code", "", "", ["puts \"Hello World!\"","# Do something useful her
 puts gen.generate
 
 end
+```
 
 ## Feedback & Contributions
 
