@@ -4,7 +4,7 @@
 # of the MIT license.  See the LICENSE file for details.
 
 module JupyterNB
-	VERSION = "0.0.1"
+	VERSION = "0.1.0"
 end
 
 
