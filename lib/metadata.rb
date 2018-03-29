@@ -58,7 +58,7 @@ module JupyterNB
 			@langinfo[:name] = "ruby"
 			@langinfo[:fileext] = ".rb"
 			@langinfo[:mime] = "application/x-ruby"
-			@langinfo[:version] = RUBY_VErSION
+			@langinfo[:version] = RUBY_VERSION
 		end
 
 		# Initialize metadata for Python 3 kernel
