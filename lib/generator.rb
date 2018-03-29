@@ -70,22 +70,7 @@ module JupyterNB
 
 		# Returns a string containing the metadata of the IPython Notebook
 		def generate_metadata
-			result = ""
-			result << @metadata.generate
-			result << open_group("metadata")
-			result << open_group("kernelspec")
-			result << add_field("display_name", "Ruby 2.3.3")
-			result << add_field("language", "ruby")
-			result << add_field("name", "ruby", true)
-			result << close_group
-			result << open_group("language_info")
-			result << add_field("file_extension", ".rb")
-			result << add_field("mimetype", "application/x-ruby")
-			result << add_field("name", "ruby")
-			result << add_field("version", "2.3.3", true)
-			result << close_group(true)
-			result << close_group
-			return result
+			return @metadata.generate(@indent)
 		end
 
 		# Returns a string that contains the version information of the

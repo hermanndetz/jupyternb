@@ -5,12 +5,17 @@
 
 module JupyterNB
 	class Metadata
+		# Defines the indent for output lines (used by Helpers module)
+		@indent = 0
 		@kernel = {}
 		@langinfo = {}
 
 		# Constructor
 		# @param lang can be either :ruby or :python3
 		def initialize(lang)
+			@kernel = {}
+			@langinfo = {}
+
 			case lang
 			when :ruby then initialize_ruby
 			when :python3 then initialize_python3
@@ -18,7 +23,10 @@ module JupyterNB
 		end
 
 		# Returns a string containing the metadata of the IPython Notebook
-		def generate_metadata
+		# @param [Integer] indent defines the indentation of the generated output.
+		def generate(indent=0)
+			@indent = indent
+
 			result = ""
 			result << open_group("metadata")
 			result << open_group("kernelspec")
@@ -36,10 +44,12 @@ module JupyterNB
 			return result
 		end
 
+
 		private
 
 		include JupyterNB::Helpers
 
+		# Initialize metadata for Ruby kernel
 		def initialize_ruby
 			@kernel[:language] = "ruby"
 			@kernel[:name] = "ruby"
@@ -51,6 +61,7 @@ module JupyterNB
 			@langinfo[:version] = RUBY_VErSION
 		end
 
+		# Initialize metadata for Python 3 kernel
 		def initialize_python3
 			@kernel[:language] = "python"
 			@kernel[:name] = "python3"
@@ -61,6 +72,7 @@ module JupyterNB
 			@langinfo[:mime] = "text/x-python"
 			@langinfo[:version] = `python3 -V`.split(' ').last
 		end
+
 	end
 end
 
