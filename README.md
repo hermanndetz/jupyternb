@@ -27,7 +27,8 @@ A simple example is given in the following:
 module JupyterNB
 
 # Create a Jupyter Notebook Generator
-gen = Generator.new
+# The parameter defines the kernel used. Present options are :ruby or :python3.
+gen = Generator.new(:ruby)
 
 # Add some content cells (either multi-line strings or arrays of strings)
 gen.add_cell("markdown", "", "", "# Test header\nsome text\n## Second Header\nmore text")
@@ -37,14 +38,6 @@ gen.add_cell("code", "", "", ["puts \"Hello World!\"","# Do something useful her
 puts gen.generate
 
 end
-```
-
-## Limitations
-
-The kernel information is presently hardcoded. Therefore, the generator can 
-currently only output IPython Notebooks, which are to be run by 
-a Ruby kernel. This will be extended to other kernels in the future. Some API 
-modifications may be required, therefore, this version is still labeled 0.0.1.
 
 ## Feedback & Contributions
 

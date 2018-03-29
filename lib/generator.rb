@@ -4,17 +4,27 @@
 # of the MIT license.  See the LICENSE file for details.
 
 require "cell"
+require "metadata"
 
 module JupyterNB
 	class Generator
 		# Array of cells (markdown, code, ...) that should be generated within the notebook
 		@cells = []
+
 		# Defines the indent for output lines (used by Helpers module)
 		@indent = 0
 
+		# Stores a metadata object
+		@metadata = nil
+
 		# Default constructor
-		def initialize
+		# @param lang can be either :ruby or :python3
+		def initialize(lang)
 			@cells = Array.new
+			
+			if ((lang == :ruby) or (lang == :python3))
+				@metadata = Metadata.new(lang)
+			end
 		end
 
 		# Returns a string that contains an IPython Notebook
@@ -59,9 +69,9 @@ module JupyterNB
 		include JupyterNB::Helpers
 
 		# Returns a string containing the metadata of the IPython Notebook
-		# For now, this is hard-coded to use a Ruby kernel
 		def generate_metadata
 			result = ""
+			result << @metadata.generate
 			result << open_group("metadata")
 			result << open_group("kernelspec")
 			result << add_field("display_name", "Ruby 2.3.3")
