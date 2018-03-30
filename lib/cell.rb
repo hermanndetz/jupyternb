@@ -55,10 +55,11 @@ module JupyterNB
 			result << close_group
 
 			result << open_array("source")
+
 			@source.each do |l|
 				result << add_string(l)
 
-				(l == @source.last) ? result << "\n" : result << ",\n"
+				(l.equal? @source.last) ? result << "\n" : result << ",\n"
 			end
 			result << close_array(true)
 			result << close_group(last)
