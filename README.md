@@ -27,7 +27,7 @@ A simple example is given in the following:
 module JupyterNB
 
 # Create a Jupyter Notebook Generator
-# The parameter defines the kernel used. Present options are :ruby or :python3.
+# The parameter defines the kernel used. Present options are :ruby, :julia or :python3.
 gen = Generator.new(:ruby)
 
 # Add some content cells (either multi-line strings or arrays of strings)
@@ -39,6 +39,21 @@ puts gen.generate
 
 end
 ```
+
+## Version History
+### 0.1.2
+Suppport for Julia
+
+### 0.1.1
+Detecting python3 executable3 before calling it
+
+### 0.1.0
+Add capability to generate notebooks with different kernels
+Support for Ruby and Python3
+
+### 0.0.1
+Initial commit
+
 
 ## Feedback & Contributions
 

@@ -19,6 +19,7 @@ module JupyterNB
 			case lang
 			when :ruby then initialize_ruby
 			when :python3 then initialize_python3
+			when :julia then initialize_julia
 			end
 		end
 
@@ -79,6 +80,29 @@ module JupyterNB
 				# Fall back to initial 3.0 release, if no python3 executable is found
 				@langinfo[:version] = '3.0'
 			end
+		end
+
+		# Initialize metadata for Julia kernel
+		def initialize_julia
+			@kernel[:language] = "julia"
+
+			`which julia`
+			if $?.success?
+				# returns the first two version numbers e.g. 1.0,
+				# also works for multiple digit version numbers
+				@langinfo[:version] = `julia -v`.split(' ').last
+
+			else
+				@langinfo[:version] = '1.0'
+			end
+
+			@kernel[:language] = "julia"
+			@kernel[:name] = "julia-#{@langinfo[:version][0..@langinfo[:version].rindex('.')-1]}"
+			@kernel[:displayname] = "Julia #{@langinfo[:version]}"
+
+			@langinfo[:name] = "julia"
+			@langinfo[:fileext] = ".jl"
+			@langinfo[:mime] = "application/julia"
 		end
 
 	end

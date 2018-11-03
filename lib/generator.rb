@@ -22,7 +22,7 @@ module JupyterNB
 		def initialize(lang)
 			@cells = Array.new
 			
-			if ((lang == :ruby) or (lang == :python3))
+			if ((lang == :ruby) or (lang == :python3) or (lang == :julia))
 				@metadata = Metadata.new(lang)
 			end
 		end
